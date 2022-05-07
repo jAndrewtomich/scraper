@@ -2,20 +2,20 @@ from dotenv import load_dotenv
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from time import sleep
-import os
+from util_func import linkd
 
 load_dotenv()
-
+driver = webdriver.Firefox()
 
 def main():
-    driver = webdriver.Firefox()
+    linkd.login(driver)
 
-    driver.get('https://linkedin.com')
-    element = driver.find_element(by=By.ID, value='session_key').send_keys(os.environ.get('USERNAME'))
-    sleep(2)
-    driver.close()
+
+if __name__ == '__main__':
+    main()
+
+
+    # driver.close()
 
     # while input("Type 'n' to quit, any other key to continue.") != 'n':
 
@@ -33,8 +33,3 @@ def main():
     
     # with open('out/soup.txt', 'w') as writer:
     #     writer.write(soup.prettify())
-
-
-if __name__ == '__main__':
-    main()
-
