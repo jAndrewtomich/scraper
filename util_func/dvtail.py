@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 import os
 
 
-class LinkdObj:
+class DvTailObj:
 
     def __init__(self, driver, maxListings=10, keyWord='python'):
         self.driver = driver
