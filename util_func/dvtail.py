@@ -3,31 +3,26 @@ from selenium.webdriver.common.by import By
 import os
 
 
-class DvTailObj:
+def login(driver):
+    driver.get('https://dovetailapp.com')
 
-    def __init__(self, driver, maxListings=10, keyWord='python'):
-        self.driver = driver
-        self.maxListings = maxListings
-        self.keyWord = keyWord
-        self.listings = None
-
-
-    def login(self):
-        self.driver.get('https://linkedin.com')
-        
-        login_field = self.driver.find_element(by=By.ID, value='session_key').send_keys(os.environ.get('USERNAME'))
-        sleep(0.1)
-        
-        password_field = self.driver.find_element(by=By.ID, value='session_password').send_keys(os.environ.get('PASSWORD'))
-        sleep(0.1)
-        
-        login_button = self.driver.find_element(by=By.CLASS_NAME, value='sign-in-form__submit-button').click()
-        sleep(0.1)
-
-        return
+    loginButton = driver.find_element(by=By.CSS_SELECTOR, value='.e10xq6bj0')
+    
+    login_field = driver.find_element(by=By.CSS_SELECTOR, value='.css-37k25f').send_keys(os.environ.get('DVTAIL_USERNAME'))
+    sleep(0.1)
+    
+    password_field = driver.find_element(by=By.CSS_SELECTOR, value='#_recycled_uid1').send_keys(os.environ.get('DVTAIL_PASSWORD'))
+    sleep(0.1)
+    
+    login_button = driver.find_element(by=By.CSS_SELECTOR, value='span.css-iei16y:nth-child(1)').click()
 
 
-    def search_jobs(self):
-        jobs_link = self.driver.find_element(by=By.CSS_SELECTOR, value='global-nav__primary-link-text')
-        print(jobs_link)
-        return
+    # driver.close()
+
+    return
+
+
+# def search_jobs(driver):
+#     jobs_link = driver.find_element(by=By.CSS_SELECTOR, value='global-nav__primary-link-text')
+#     print(jobs_link)
+#     return
